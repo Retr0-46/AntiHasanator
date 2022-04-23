@@ -4,10 +4,9 @@ import cv2 as cv
 cap = cv.VideoCapture(0)
 
 def FindCircles(frame):
-    circles = cv.HoughCircles(frame, cv2.HOUGH_GRADIENT, 1, 10, np.array([]), 100, 30, 1, 20)
-    if circles is not None:
-        print('1')
-
+    circles = cv.HoughCircles(frame, cv2.HOUGH_GRADIENT, 1, 10, np.array([]), 100, 30, 1, 1000)
+    if len(circles) > 0:
+        print(circles)
 
 while cap.isOpened():
     ret, frame = cap.read()
@@ -38,21 +37,19 @@ while cap.isOpened():
     for cnt in contours0:
         if len(cnt) > 4:
             ellipses = cv.fitEllipse(cnt)
-            cv.ellipse(img, ellipses, (0, 0, 255), 2)
 
     cv.imshow('contours', img)
 
     FindCircles(red_mask_full)
     if cv.waitKey(1) == ord('q'):
         break
+    
 cap.release()
 cv.destroyAllWindows()
 
 
 
 #2
-import cv2
-import numpy as np
 import matplotlib.pyplot as plt
 image = cv2.imread('o.png')
 img = image.copy()
@@ -123,8 +120,6 @@ cv2.imshow("Result", img)
 cv2.waitKey()
 
 #3
-import cv2
-import numpy as np
 image = cv2.imread('img_1.png')
 img = image.copy()
 h, w, channels = img.shape
