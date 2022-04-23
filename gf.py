@@ -4,7 +4,7 @@ import cv2 as cv
 cap = cv.VideoCapture(0)
 
 def FindCircles(frame):
-    circles = cv.HoughCircles(frame, cv2.HOUGH_GRADIENT, 1, 10, np.array([]), 100, 30, 1000, 10000)
+    circles = cv.HoughCircles(frame, cv2.HOUGH_GRADIENT, 1, 10, np.array([]), 100, 30, 1000, 10000) # функция возращает координаты центра и радиус
     if len(circles) > 0:
         print(circles)
     return circles
