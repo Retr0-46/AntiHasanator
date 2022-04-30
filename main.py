@@ -4,7 +4,7 @@ import cv2 as cv
 cap = cv.VideoCapture(0)
 
 def FindCircles(frame):
-    circles = cv.HoughCircles(frame, cv2.HOUGH_GRADIENT, 1, 10, np.array([]), 100, 30, 1, 1000)
+    circles = cv.HoughCircles(frame, cv2.HOUGH_GRADIENT, 1, 10, np.array([]), 100, 30, 50, 1000)
     if len(circles) > 0:
         print(circles)
 
